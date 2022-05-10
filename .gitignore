@@ -1,0 +1,9 @@
+.vscode/
+.DS_Store
+__pycache__
+data/*
+logs/*
+tmp/*
+cache/*
+tmynnlp.egg-info/*
+dist/*

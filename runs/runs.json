@@ -1,0 +1,280 @@
+[
+    {
+        "type": "exp1",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "nltk_tokenizer"
+        },
+        "feature_extractor": {
+            "type": "doc2vec_extract",
+            "epochs": 15,
+            "vector_size": 300
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ]
+    },
+    {
+        "type": "exp2",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "huggingface_tokenizer",
+            "padding": true,
+            "truncation": true
+        },
+        "feature_extractor": {
+            "type": "huggingface_model",
+            "pretrained_model": "bert-base-uncased"
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ],
+        "dist_metric": "cosine"
+    },
+    {
+        "type": "exp3",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "nltk_tokenizer"
+        },
+        "feature_extractor": {
+            "type": "huggingface_pipeline",
+            "pretrained_model": "bert-base-cased",
+            "pipeline_name": "zero-shot-classification"
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ]
+    },
+    {
+        "type": "exp4",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "nltk_tokenizer"
+        },
+        "feature_extractor": {
+            "type": "huggingface_pipeline",
+            "pretrained_model": "roberta-large",
+            "pipeline_name": "zero-shot-classification"
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ]
+    },
+    {
+        "type": "exp5",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "huggingface_tokenizer",
+            "pretrained_model": "bert-base-cased"
+        },
+        "feature_extractor": {
+            "type": "huggingface_model",
+            "pretrained_model": "bert-base-uncased"
+        },
+        "ner_extractor": {
+            "type": "huggingface_ner",
+            "pretrained_model": "dslim/bert-base-NER",
+            "ner_tokenizer": {
+                "type": "huggingface_tokenizer",
+                "pretrained_model": "bert-base-cased"
+            }
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ],
+        "dist_metric": "cosine"
+    },
+    {
+        "type": "exp6",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "huggingface_tokenizer",
+            "pretrained_model": "bert-base-cased",
+            "use_fast": false,
+            "padding": "max_length",
+            "truncation": true
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ]
+    },
+    {
+        "type": "exp7",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "huggingface_tokenizer",
+            "pretrained_model": "bert-base-cased",
+            "use_fast": false,
+            "padding": "max_length",
+            "truncation": true
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ]
+    },
+    {
+        "type": "exp8",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "huggingface_tokenizer",
+            "pretrained_model": "bert-base-uncased",
+            "padding": true,
+            "truncation": true,
+            "use_fast": false
+        },
+        "feature_extractor": {
+            "type": "huggingface_model",
+            "pretrained_model": "bert-base-uncased"
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ],
+        "dist_metric": "cosine"
+    },
+    {
+        "type": "exp10",
+        "dataset_reader": {
+            "type": "email-body",
+            "train_data_path": "./data/emails/train.json",
+            "val_data_path": "./data/emails/val.json",
+            "mock": true
+        },
+        "preprocessor": {
+            "type": "default"
+        },
+        "tokenizer": {
+            "type": "huggingface_tokenizer",
+            "pretrained_model": "bert-base-cased"
+        },
+        "feature_extractor": {
+            "type": "huggingface_ner",
+            "pretrained_model": "dslim/bert-base-NER",
+            "ner_tokenizer": {
+                "type": "huggingface_tokenizer",
+                "pretrained_model": "bert-base-cased"
+            }
+        },
+        "metrics": [
+            {
+                "type": "accuracy"
+            },
+            {
+                "type": "f1",
+                "average": "weighted"
+            }
+        ]
+    }
+]
