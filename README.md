@@ -1,6 +1,9 @@
 # tmynnlp
 A unified system for NLP problems, using ML/DL models.
 
+
+<img src="tmynnlp_schema.png"  width="600">
+
 # Setup
 
 It is recommended to use a conda environment for this project.
