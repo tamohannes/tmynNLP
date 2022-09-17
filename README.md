@@ -1,4 +1,4 @@
-# tmynnlp
+# tmynNLP
 A unified system for NLP tasks, using Machine Learning models.
 
 # Setup
