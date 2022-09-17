@@ -1,27 +1,20 @@
 from common import Registrable
-from typing import List, Any, Tuple
+from typing import List, Any
 
 
 class Metric(Registrable):
 
     def __init__(self) -> None:
-        pass
+        self._gold_labels: List[Any] = []
+        self._predictions: List[Any] = []
 
-    def __call__(self, gold_labels: List[str], predictions: List[str]) -> Any:
+    def __call__(self, gold_labels: List[Any], predictions: List[Any]) -> None:
+        self._gold_labels.append(gold_labels.cpu())
+        self._predictions.append(predictions.cpu())
+
+    def _reset(self):
+        self._gold_labels: List[Any] = []
+        self._predictions: List[Any] = []
+
+    def get_metric(self, reset: bool = False):
         raise NotImplementedError
-
-    def extract_no_predictions(self, gold_labels: List[str], predictions: List[str]) -> Tuple[List[str], List[str], int]:
-        no_predictions: List[int] = []
-
-        for i, (gold_label, predicton) in enumerate(zip(gold_labels, predictions)):
-            if predicton == "":
-                no_predictions.append(i)
-
-        popped_gold_labels: List[str] = []
-        popped_predictions: List[str] = []
-        for i in range(len(gold_labels)):
-            if i not in no_predictions:
-                popped_gold_labels.append(gold_labels[i])
-                popped_predictions.append(predictions[i])
-
-        return popped_gold_labels, popped_predictions, len(no_predictions)

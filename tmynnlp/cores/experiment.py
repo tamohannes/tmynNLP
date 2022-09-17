@@ -1,11 +1,10 @@
-from pathlib import Path
 from typing import Dict, List, Any, Tuple
-from .feature_extractor import FeatureExtractor
-from .preprocessor import Preprocessor
-from .tokenizer import Tokenizer
-from .metric import Metric
 from .dataset_reader import DatasetReader, Dataset
-from common import Registrable, Cacheable
+from .tokenizer import Tokenizer
+from .model import Model
+from .tracker import Tracker
+from .metric import Metric
+from common import Registrable, Cacheable, Params
 import multiprocessing
 
 
@@ -13,24 +12,27 @@ class Experiment(Registrable):
 
     def __init__(self,
                  dataset_reader: DatasetReader,
-                 preprocessor: Preprocessor,
                  metrics: List[Metric],
                  tokenizer: Tokenizer = None,
-                 feature_extractor: FeatureExtractor = None,
+                 model: Model = None,
+                 tracker: Tracker = None,
+                 run_params: Params = None,
                  num_workers: int = -1,
                  **kwargs) -> None:
 
         self.dataset_reader = dataset_reader
-        self.datasets: Dict[str, Dataset] = self.dataset_reader.read()
-        self.preprocessor = preprocessor
         self.metrics = metrics
         self.tokenizer = tokenizer
-        self.feature_extractor = feature_extractor
+        self.model = model
+        self.tracker = tracker
         self.num_workers = num_workers if num_workers > 0 else multiprocessing.cpu_count()
 
         self.__dict__.update(kwargs)
-
         self.reverse_registration()
+
+        run_params["description"] = self.description()
+        self.tracker.set_params(run_params)
+        self.datasets: Dict[str, Dataset] = self.dataset_reader.read()
 
     def reverse_registration(self) -> None:
         properties = vars(self)
@@ -46,9 +48,9 @@ class Experiment(Registrable):
         accumulated_scores: Dict[str, float] = {}
 
         for metric in self.metrics:
-            accumulated_scores[metric.name], n_no_prediction = metric(gold_labels, predictions)
+            accumulated_scores[metric.name] = metric(gold_labels, predictions)
 
-        return accumulated_scores, n_no_prediction
+        return accumulated_scores
 
-    def info(self) -> str:
+    def description(self) -> str:
         raise NotImplementedError

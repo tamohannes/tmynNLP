@@ -1,4 +1,4 @@
-from .runner import Runner
+from .train import Train
 from .cleanup import Cleanup
 from .prune import Prune
 

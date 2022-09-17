@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = {"VERSION": "1.0.0"}  # type: ignore
+VERSION = {"VERSION": "2.0"}  # type: ignore
 
 
 setup(
@@ -41,11 +41,8 @@ setup(
         "torch>=1.6.0",
         "overrides>=3.1.0",
         "datasets",
-        "pandas",
         "sklearn",
-        "nltk",
         "numpy",
-        "gensim",
         "tqdm>=4.19",
         "transformers>=4.0",
     ],
