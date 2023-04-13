@@ -150,7 +150,8 @@ tmynnlp includes NLP-specific abstractions, which build the general information 
 
 In this section, we will discuss the main component, one of its implementations. Then we will take a look at the main components' implementations, their structure, and the relationships they have with the other components. The high-level structure of the framework is presented in Figure 1.
 
-<!-- TODO add the figure -->
+<img src="https://user-images.githubusercontent.com/23078323/231715470-3e394909-51f8-4bd0-8dd9-a2561387ec39.png" alt="tmynnlp_schema drawio" width=600/>
+
 
 Figure 1: The solid lines indicate the access. A one-sided arrow with a solid line means that the starting component has access to the ending point. The two-sided solid line shows the pointwise access. The dashed arrowed lines indicate the data flow. The components with dashed borders show that the component is optional, while the ones with solid borders are required.
 
