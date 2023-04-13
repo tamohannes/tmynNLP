@@ -236,7 +236,7 @@ We write our code using high-level abstractions, which lets us make changes to l
 
 Here we will take a closer look at the structure of the framework and each directory meaning. The main directory tree is presented in Figure 2.
 
-```json
+```txt
 tmynnlp
 ├── README.md
 ├── cache
@@ -301,7 +301,7 @@ Figure 2: The recursive tree representation of the main directory. The directori
 
 A sample structure of the “modules” directory is presented in Figure 3.
 
-```json
+```txt
 modules
 ├── __init__.py
 ├── dataset_readers
@@ -354,7 +354,6 @@ In practice, what we do in tmynnlp is have all of our classes inherit from “Fr
 ```json
 [ 
      {
-        ...
         "ner_extractor": {
             "type": "huggingface_ner",
             "pretrained_model": "dslim/bert-base-NER",
@@ -363,7 +362,6 @@ In practice, what we do in tmynnlp is have all of our classes inherit from “Fr
                 "pretrained_model": "bert-base-cased"
             }
         },
-        ...
     }
 ]
 ```
