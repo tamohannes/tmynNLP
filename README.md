@@ -1,5 +1,5 @@
 # tmynNLP
-A unified system for NLP tasks, using Machine Learning models.
+A unified framework for NLP tasks, using Machine Learning models, inspired by [AllenNLP](https://github.com/allenai/allennlp)
 
 # Setup
 
